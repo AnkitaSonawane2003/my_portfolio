@@ -24,11 +24,17 @@ const Contact = () => {
     setStatusMsg('');
 
     try {
-      const response = await fetch('https://project-portfolio-backend.onrender.com/contact', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify(formData)
-});
+      // Create a form data object with your inputs + access_key
+      const payload = {
+        ...formData,
+        access_key: "d27d60d0-a30d-4858-b56e-83b21d0668ed"  // <-- Replace this with your Web3Forms access key
+      };
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload)
+      });
 
       const data = await response.json();
 
